@@ -9,14 +9,36 @@
 import UIKit
 import NotificationCenter
 
+@objc (TodayViewController)
+
 class TodayViewController: UIViewController, NCWidgetProviding {
-        
+    var testButton:UIButton
+    
+    override init() {
+        testButton = UIButton(frame: CGRectMake(0, 0, 100, 20))
+        super.init()
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        testButton = UIButton(frame: CGRectMake(0, 0, 100, 20))
+        super.init(coder: aDecoder)
+    }
+    
+    required override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        testButton = UIButton(frame: CGRectMake(0, 0, 100, 20))
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib.
-        
-        var UIButton
+        testButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        testButton.setTitle("UberUp!", forState: UIControlState.Normal)
+        testButton.addTarget(self, action: Selector("uberUpAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.preferredContentSize = CGSizeMake(320, 50);
+        self.view.addSubview(testButton)
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -33,4 +55,16 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         completionHandler(NCUpdateResult.NewData)
     }
     
+    func uberUpAction(sender: UIButton!) {
+        openURLSceme("uber://")
+    }
+    
+    func openURLSceme(url: String) {
+        openURLSceme(url, {})
+    }
+
+    func openURLSceme(url: String, failCallback: () -> ()) {
+        let nsurl:NSURL = NSURL(string: url)
+        self.extensionContext?.openURL(nsurl, completionHandler: nil)
+    }
 }

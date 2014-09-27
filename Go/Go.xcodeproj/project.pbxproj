@@ -513,6 +513,7 @@
 		C5966BFE19D744A1001ECE44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -527,6 +528,7 @@
 		C5966BFF19D744A1001ECE44 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Do/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
