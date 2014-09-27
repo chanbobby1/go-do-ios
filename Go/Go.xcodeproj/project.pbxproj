@@ -262,6 +262,7 @@
 					};
 					C5966BEC19D744A1001ECE44 = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = U3HWGMXXEB;
 					};
 				};
 			};
