@@ -17,6 +17,8 @@
 		C5966BF519D744A1001ECE44 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5966BF419D744A1001ECE44 /* TodayViewController.swift */; };
 		C5966BF719D744A1001ECE44 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5966BF619D744A1001ECE44 /* MainInterface.storyboard */; };
 		C5966BFA19D744A1001ECE44 /* Do.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5966BED19D744A1001ECE44 /* Do.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C5966C0219D782FF001ECE44 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5966C0119D782FF001ECE44 /* Shortcut.swift */; };
+		C5966C0419D7852D001ECE44 /* ShortcutCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5966C0319D7852D001ECE44 /* ShortcutCollectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		C5966BF319D744A1001ECE44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5966BF419D744A1001ECE44 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		C5966BF619D744A1001ECE44 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		C5966C0119D782FF001ECE44 /* Shortcut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shortcut.swift; sourceTree = "<group>"; };
+		C5966C0319D7852D001ECE44 /* ShortcutCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutCollectionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				C5966BF419D744A1001ECE44 /* TodayViewController.swift */,
+				C5966C0319D7852D001ECE44 /* ShortcutCollectionCell.swift */,
+				C5966C0119D782FF001ECE44 /* Shortcut.swift */,
 				C5966BF619D744A1001ECE44 /* MainInterface.storyboard */,
 				C5966BF219D744A1001ECE44 /* Supporting Files */,
 			);
@@ -337,6 +343,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5966BF519D744A1001ECE44 /* TodayViewController.swift in Sources */,
+				C5966C0219D782FF001ECE44 /* Shortcut.swift in Sources */,
+				C5966C0419D7852D001ECE44 /* ShortcutCollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

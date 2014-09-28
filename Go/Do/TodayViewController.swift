@@ -11,15 +11,23 @@ import NotificationCenter
 
 @objc (TodayViewController)
 
-class TodayViewController: UIViewController, NCWidgetProviding {
+class TodayViewController: UIViewController, NCWidgetProviding, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     var uberHomeToWorkButton:UIButton,
         uberWorkToHomeButton:UIButton,
         uberCurrentLocToHomeButton:UIButton;
+    
+    var grid:UICollectionView?;
+    var shortcuts:Array<Shortcut>;
+    
+//    Stub addresses for now until we have the main app to configure this
+    let homeAddress = "1 Market St, San Francisco, CA"
+    let workAddress = "200 Market St., San Francsico, CA"
     
     override init() {
         uberHomeToWorkButton = UIButton()
         uberWorkToHomeButton = UIButton()
         uberCurrentLocToHomeButton = UIButton()
+        shortcuts = []
         super.init()
     }
 
@@ -27,6 +35,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         uberHomeToWorkButton = UIButton()
         uberWorkToHomeButton = UIButton()
         uberCurrentLocToHomeButton = UIButton()
+        shortcuts = []
         super.init(coder: aDecoder)
     }
     
@@ -34,6 +43,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         uberHomeToWorkButton = UIButton()
         uberWorkToHomeButton = UIButton()
         uberCurrentLocToHomeButton = UIButton()
+        shortcuts = []
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -41,9 +51,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib.
         
-        self.preferredContentSize = CGSizeMake(320, 500);
+        self.preferredContentSize = CGSizeMake(320, 100)
         
         setupButtons()
+        setupShortcuts()
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,46 +73,27 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     func setupButtons() {
-        uberHomeToWorkButton.frame = CGRectMake(-10, 0, 60, 60)
-        uberHomeToWorkButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        uberHomeToWorkButton.backgroundColor = UIColor.grayColor()
-        uberHomeToWorkButton.setTitle("Home to Work", forState: UIControlState.Normal)
-        uberHomeToWorkButton.addTarget(self, action: "uberUpHomeToWorkAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        let gridLayout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        gridLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 5)
+        gridLayout.itemSize = CGSize(width: 50, height: 50)
+        println(self.view.frame)
+        grid = UICollectionView(frame: CGRectMake(0, 0, self.view.frame.width-75, self.view.frame.height), collectionViewLayout: gridLayout)
+        grid!.dataSource = self
+        grid!.delegate = self
+        grid!.registerClass(ShortcutCollectionCell.self, forCellWithReuseIdentifier: "ShortcutCell")
+        grid!.backgroundColor = UIColor.clearColor()
         
-        uberWorkToHomeButton.frame = CGRectMake(-10, 60, 60, 60)
-        uberWorkToHomeButton.backgroundColor = UIColor.grayColor()
-        uberWorkToHomeButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        uberWorkToHomeButton.setTitle("Work to Home", forState: UIControlState.Normal)
-        uberWorkToHomeButton.addTarget(self, action: "uberUpWorkToHomeAction:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        uberCurrentLocToHomeButton.frame = CGRectMake(-10, 60*2, 60, 60)
-        uberCurrentLocToHomeButton.backgroundColor = UIColor.grayColor()
-        uberCurrentLocToHomeButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        uberCurrentLocToHomeButton.setTitle("Home", forState: UIControlState.Normal)
-        uberCurrentLocToHomeButton.addTarget(self, action: "uberUpToHomeAction:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        self.view.addSubview(uberHomeToWorkButton)
-        self.view.addSubview(uberWorkToHomeButton)
-        self.view.addSubview(uberCurrentLocToHomeButton)
-        println("Setup done")
+        self.view.addSubview(grid!)
     }
     
-    func uberUpHomeToWorkAction(sender: UIButton!) {
-        println("TESTS")
-        let homeAddress = "1 Market St, San Francisco, CA"
-        let workAddress = "200 Market St., San Francsico, CA"
-        openUber(from: homeAddress, to: workAddress)
-    }
-    
-    func uberUpWorkToHomeAction(sender: UIButton!) {
-        let homeAddress = "1 Market St, San Francisco, CA"
-        let workAddress = "200 Market St., San Francsico, CA"
-        openUber(from: workAddress, to: homeAddress)
-    }
-    
-    func uberUpToHomeAction(sender: UIButton!) {
-        let homeAddress = "1 Market St, San Francisco, CA"
-        openURLSceme("uber://?action=setPickup&pickup=my_location&dropoff[formatted_address]=\(homeAddress)")
+//    Add the shortcuts that the user has selected.
+//    Stubbing with Uber shortcuts for now
+    func setupShortcuts() {
+        shortcuts += [
+            Shortcut(name: "Home to Work"),
+            Shortcut(name: "Work to Home"),
+            Shortcut(name: "To Home")
+        ]
     }
     
     func openUber(from pickup:String, to destination:String) {
@@ -125,12 +117,49 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
 
     func openURLSceme(url: String, failCallback: () -> ()) {
-        println("Open url \(url)")
         let nsurl:NSURL = NSURL(string:url)
         self.extensionContext?.openURL(nsurl, completionHandler: { (success:Bool) -> Void in
             if !success {
                 failCallback()
             }
         })
+    }
+    
+    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> (UIEdgeInsets) {
+        return UIEdgeInsetsMake(10, 10, 10, 10)
+    }
+    
+//    Collection View methods
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return shortcuts.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let index:NSInteger = indexPath.row
+        let shortcut:Shortcut = shortcuts[index]
+        
+        var cell = grid!.dequeueReusableCellWithReuseIdentifier("ShortcutCell", forIndexPath: indexPath) as ShortcutCollectionCell
+        cell.shortcut = shortcut
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let index:NSInteger = indexPath.row
+        let shortcut:Shortcut = shortcuts[index]
+        
+        switch(shortcut.name) {
+        case "Home to Work":
+            openUber(from: homeAddress, to: workAddress)
+            break
+        case "Work to Home":
+            openUber(from: workAddress, to: homeAddress)
+            break
+        case "To Home":
+            var destination = homeAddress.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+            openURLSceme("uber://?action=setPickup&pickup=my_location&dropoff[formatted_address]=\(destination)")
+            break
+        default:
+            break
+        }
     }
 }
