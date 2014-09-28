@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80C6134419D76E1A008564A0 /* AppShortCutCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C6134319D76E1A008564A0 /* AppShortCutCollectionViewCell.xib */; };
+		80C6134A19D780F3008564A0 /* AppShortCutCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C6134919D780F3008564A0 /* AppShortCutCollectionViewCell.swift */; };
 		C5966BCA19D74473001ECE44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5966BC919D74473001ECE44 /* AppDelegate.swift */; };
 		C5966BCC19D74473001ECE44 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5966BCB19D74473001ECE44 /* ViewController.swift */; };
 		C5966BCF19D74473001ECE44 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5966BCD19D74473001ECE44 /* Main.storyboard */; };
@@ -60,6 +62,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		80C6134319D76E1A008564A0 /* AppShortCutCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppShortCutCollectionViewCell.xib; sourceTree = "<group>"; };
+		80C6134919D780F3008564A0 /* AppShortCutCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppShortCutCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5966BC419D74473001ECE44 /* Go.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Go.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5966BC819D74473001ECE44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5966BC919D74473001ECE44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -179,7 +183,9 @@
 				C5966C0319D7852D001ECE44 /* ShortcutCollectionCell.swift */,
 				C5966C0119D782FF001ECE44 /* Shortcut.swift */,
 				C5966BF619D744A1001ECE44 /* MainInterface.storyboard */,
+				80C6134319D76E1A008564A0 /* AppShortCutCollectionViewCell.xib */,
 				C5966BF219D744A1001ECE44 /* Supporting Files */,
+				80C6134919D780F3008564A0 /* AppShortCutCollectionViewCell.swift */,
 			);
 			path = Do;
 			sourceTree = "<group>";
@@ -315,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5966BF719D744A1001ECE44 /* MainInterface.storyboard in Resources */,
+				80C6134419D76E1A008564A0 /* AppShortCutCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +352,7 @@
 				C5966BF519D744A1001ECE44 /* TodayViewController.swift in Sources */,
 				C5966C0219D782FF001ECE44 /* Shortcut.swift in Sources */,
 				C5966C0419D7852D001ECE44 /* ShortcutCollectionCell.swift in Sources */,
+				80C6134A19D780F3008564A0 /* AppShortCutCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,6 +572,7 @@
 				C5966BE519D74473001ECE44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C5966BE619D74473001ECE44 /* Build configuration list for PBXNativeTarget "GoTests" */ = {
 			isa = XCConfigurationList;
@@ -572,6 +581,7 @@
 				C5966BE819D74473001ECE44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C5966BFD19D744A1001ECE44 /* Build configuration list for PBXNativeTarget "Do" */ = {
 			isa = XCConfigurationList;
@@ -580,6 +590,7 @@
 				C5966BFF19D744A1001ECE44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
