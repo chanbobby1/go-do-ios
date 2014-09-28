@@ -133,4 +133,21 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             }
         })
     }
+
+    func fetchAppIcon(appId: NSString) -> UIImage {
+        let urlString = "http://itunes.apple.com/lookup?id=" + appId
+        let url = NSURL.URLWithString(urlString)
+        let json = NSData(contentsOfURL: url);
+       
+        let dict : NSDictionary = NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
+        let results : NSArray = dict.objectForKey("results") as NSArray
+        let result : NSDictionary = results.objectAtIndex(0) as NSDictionary
+        let imageURLString : NSString = result.objectForKey("artworkUrl100") as NSString
+   
+        let artworkURL = NSURL.URLWithString(imageURLString)
+        var err: NSError?
+        var imageData :NSData = NSData.dataWithContentsOfURL(artworkURL, options: NSDataReadingOptions.DataReadingMappedIfSafe, error: &err)
+       
+        return UIImage(data: imageData)
+    }
 }

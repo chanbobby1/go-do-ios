@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361p" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="yG3-vU-7g6" userLabel="AppShortCutCollectionViewCell" customClass="AppShortCutCollectionViewCell" customModule="Do" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="120" height="150"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qM7-dm-RaJ">
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                        <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                            <rect key="frame" x="0.0" y="-8" width="120" height="120"/>
+                        </variation>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKb-Mf-esd">
+                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                            <rect key="frame" x="0.0" y="120" width="120" height="30"/>
+                        </variation>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <size key="customSize" width="128" height="140"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="qM7-dm-RaJ"/>
+                    <exclude reference="BKb-Mf-esd"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=compact-widthClass=compact">
+                <mask key="subviews">
+                    <include reference="qM7-dm-RaJ"/>
+                    <include reference="BKb-Mf-esd"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="shortcutIcon" destination="qM7-dm-RaJ" id="Qtp-mK-cxn"/>
+                <outlet property="shortcutName" destination="BKb-Mf-esd" id="aWg-NG-cYZ"/>
+            </connections>
+            <point key="canvasLocation" x="198" y="507"/>
+        </collectionViewCell>
+    </objects>
+</document>
